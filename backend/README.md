@@ -1,6 +1,6 @@
 # AgroWeather Irrigation Advisor — Backend
 
-Production-ready Node.js + Express API server with SQLite database integration.
+Node.js + Express API server with SQLite database integration.
 
 ## Features
 
