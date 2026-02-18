@@ -2,7 +2,7 @@ services:
   # Backend Service
   - type: web
     name: agroweather-backend
-    env: node
+    runtime: node
     plan: free
     region: singapore
     rootDir: backend
@@ -19,8 +19,7 @@ services:
   # Frontend Service
   - type: web
     name: agroweather-frontend
-    env: static
-    plan: free
+    runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
