@@ -47,7 +47,25 @@ Server runs on `http://localhost:4000` by default.
 npm start
 ```
 
+## Deployment
+
+### Render.com
+This project is configured for **Render.com** using the `render.yaml` Blueprint.
+- **Runtime**: Node.js
+- **Start Command**: `npm run init-db && npm start` (Ensures database tables exist on ephemeral disks)
+- **Health Check**: `/api/health`
+
+### Environment Variables
+- `PORT`: Server port (default: 4000)
+- `SQLITE_FILE`: Path to SQLite DB (default: `./database/agroweather.db`)
+
 ## API Endpoints
+
+### 0. Health Check
+**GET** `/api/health`
+Response: `{"status": "ok", "timestamp": "..."}`
+
+### 1. Authentication
   
 ### 1. Authentication
 

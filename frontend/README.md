@@ -28,10 +28,22 @@ npm run build
 npm run preview
 ```
 
-## Environment Variables
+## Deployment
 
-Create a `.env` file (or copy `.env.example`):
+### Render.com
+- **Runtime**: Static Site
+- **Build Command**: `npm run build`
+- **Publish Directory**: `dist`
+- **SPA Rewrite**: All routes redirect to `index.html` (defined in `render.yaml`).
 
+### Environment Variables
+
+The app automatically handles Render's internal hostnames.
+- `VITE_API_BASE`: URL of the backend API.
+  - If set to an internal name like `agroweather-backend`, the app automatically appends `.onrender.com` to make it a valid public URL.
+
+**Local Development:**
+Create a `.env` file:
 ```
 VITE_API_BASE=http://localhost:4000/api
 ```
