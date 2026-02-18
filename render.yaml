@@ -1,0 +1,38 @@
+services:
+  # Backend Service
+  - type: web
+    name: agroweather-backend
+    env: node
+    plan: free
+    region: singapore
+    root: backend
+    buildCommand: npm install && npm run init-db
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: SQLITE_FILE
+        value: /opt/render/project/src/backend/database/agroweather.db
+
+  # Frontend Service
+  - type: web
+    name: agroweather-frontend
+    env: static
+    plan: free
+    region: singapore
+    root: frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_BASE
+        fromService:
+          type: web
+          name: agroweather-backend
+          property: url
+
+databases:
+  # Render doesn't support persistent SQLite on free tier easily without disk,
+  # but for this blueprint we rely on the file system (ephemeral on free tier).
+  # For production persistence, use a managed Render PostgreSQL database.
