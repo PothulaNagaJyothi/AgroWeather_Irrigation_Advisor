@@ -6,7 +6,7 @@ if (!backendUrl.startsWith('http')) {
 }
 const API_BASE = backendUrl.endsWith('/api') ? backendUrl : `${backendUrl}/api`
 
-const authClient = axios.create({ baseURL: API_BASE, timeout: 10000 })
+const authClient = axios.create({ baseURL: API_BASE, timeout: 60000 })
 
 // Add token to requests if it exists
 authClient.interceptors.request.use((config) => {
