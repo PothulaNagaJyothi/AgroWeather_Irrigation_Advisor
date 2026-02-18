@@ -2,6 +2,8 @@
 
 A full-stack web application that helps farmers make intelligent irrigation scheduling decisions using real-time weather forecasts, soil properties, and crop requirements.
 
+![AgroWeather Irrigation Advisor](assets/images/AgroWeather_Irrigation_Advisor%20Image.png)
+
 ## 🌾 Overview
 
 **AgroWeather Irrigation Advisor** is a decision-support system for agricultural water management. It integrates:
