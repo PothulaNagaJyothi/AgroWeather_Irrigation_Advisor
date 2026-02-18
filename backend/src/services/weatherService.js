@@ -14,13 +14,21 @@ async function getShortTermForecast(lat, lon) {
   };
 
   const url = config.openMeteoUrl;
-  const resp = await axios.get(url, { params });
+  try {
+    console.log(`Fetching weather for ${lat}, ${lon}...`);
+    const start = Date.now();
+    const resp = await axios.get(url, { params, timeout: 5000 }); // 5s timeout
+    console.log(`Weather fetch took ${Date.now() - start}ms`);
 
-  // cache minimal payload
-  const db = await getDb();
-  db.run('INSERT INTO weather_data (lat, lon, data) VALUES (?, ?, ?)', [lat, lon, JSON.stringify(resp.data)]);
+    // cache minimal payload
+    const db = await getDb();
+    db.run('INSERT INTO weather_data (lat, lon, data) VALUES (?, ?, ?)', [lat, lon, JSON.stringify(resp.data)]);
 
-  return resp.data;
+    return resp.data;
+  } catch (error) {
+    console.error('Weather API failed:', error.message);
+    return null; // Return null so we can handle gracefully
+  }
 }
 
 module.exports = { getShortTermForecast };

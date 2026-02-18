@@ -21,7 +21,16 @@ async function getFarmById(id, userId) {
 }
 
 async function fetchWeatherForFarm(farm) {
-  return weatherService.getShortTermForecast(farm.location_lat, farm.location_lon);
+  const weatherData = await weatherService.getShortTermForecast(farm.location_lat, farm.location_lon);
+  if (!weatherData) {
+    // Fallback if weather API fails
+    return {
+      latitude: farm.location_lat,
+      longitude: farm.location_lon,
+      hourly: { time: [], temperature_2m: [], precipitation: [] }
+    };
+  }
+  return weatherData;
 }
 
 async function saveIrrigationDecision(farmId, decision) {
