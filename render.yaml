@@ -21,7 +21,6 @@ services:
     name: agroweather-frontend
     env: static
     plan: free
-    region: singapore
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
@@ -30,7 +29,7 @@ services:
         fromService:
           type: web
           name: agroweather-backend
-          property: url
+          property: host
 
 databases:
   # Render doesn't support persistent SQLite on free tier easily without disk,

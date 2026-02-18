@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const backendUrl = import.meta.env.VITE_API_BASE || 'http://localhost:4000'
+let backendUrl = import.meta.env.VITE_API_BASE || 'http://localhost:4000'
+if (!backendUrl.startsWith('http')) {
+  backendUrl = `https://${backendUrl}`
+}
 const API_BASE = backendUrl.endsWith('/api') ? backendUrl : `${backendUrl}/api`
 
 const client = axios.create({ baseURL: API_BASE, timeout: 10000 })
