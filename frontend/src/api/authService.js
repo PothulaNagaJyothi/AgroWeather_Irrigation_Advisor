@@ -1,6 +1,9 @@
 import axios from 'axios'
 
 let backendUrl = import.meta.env.VITE_API_BASE || 'http://localhost:4000'
+if (!backendUrl.includes('.') && backendUrl !== 'localhost' && !backendUrl.includes(':')) {
+  backendUrl = `${backendUrl}.onrender.com`
+}
 if (!backendUrl.startsWith('http')) {
   backendUrl = `https://${backendUrl}`
 }
