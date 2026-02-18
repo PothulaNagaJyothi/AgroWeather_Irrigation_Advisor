@@ -5,6 +5,7 @@ if (!backendUrl.startsWith('http')) {
   backendUrl = `https://${backendUrl}`
 }
 const API_BASE = backendUrl.endsWith('/api') ? backendUrl : `${backendUrl}/api`
+console.log('Auth Service API_BASE:', API_BASE); // Debug logging
 
 const authClient = axios.create({ baseURL: API_BASE, timeout: 60000 })
 

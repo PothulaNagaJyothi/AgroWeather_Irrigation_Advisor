@@ -5,6 +5,7 @@ if (!backendUrl.startsWith('http')) {
   backendUrl = `https://${backendUrl}`
 }
 const API_BASE = backendUrl.endsWith('/api') ? backendUrl : `${backendUrl}/api`
+console.log('API Client API_BASE:', API_BASE); // Debug logging
 
 const client = axios.create({ baseURL: API_BASE, timeout: 60000 })
 

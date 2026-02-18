@@ -6,8 +6,8 @@ services:
     plan: free
     region: singapore
     rootDir: backend
-    buildCommand: npm install && npm run init-db
-    startCommand: npm start
+    buildCommand: npm install
+    startCommand: npm run init-db && npm start
     envVars:
       - key: NODE_ENV
         value: production
